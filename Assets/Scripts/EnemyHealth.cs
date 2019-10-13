@@ -1,0 +1,28 @@
+﻿using UnityEngine;
+
+public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
+{
+    [SerializeField] private int baseHitPoints = 100;
+    public int HitPoints { get; private set; }
+
+    private void Start()
+    {
+        HitPoints = baseHitPoints;
+    }
+
+    public void Damage(int damage)
+    {
+        HitPoints -= damage;
+        if (HitPoints <= 0)
+        {
+            Kill();
+        }
+    }
+
+    public void Kill()
+    {
+        Debug.Log(gameObject.name + " was killed");
+        Destroy(gameObject);
+    }
+}
+

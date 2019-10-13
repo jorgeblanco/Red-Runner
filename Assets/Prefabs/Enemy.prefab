@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 422385176623986175}
   - component: {fileID: 422385176623986112}
   - component: {fileID: 422385176623986172}
+  - component: {fileID: 28284322193101101}
   - component: {fileID: 422385176623986113}
   m_Layer: 0
   m_Name: Enemy
@@ -110,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   basePos: {fileID: 0}
+  indicator: {fileID: 0}
   idleMaterial: {fileID: 2100000, guid: 10279c4b878f9c24894b52ed9fea6f4f, type: 2}
   provokedMaterial: {fileID: 2100000, guid: b79a1d2c630ec3d4499cfadc415f8d2f, type: 2}
   attackingMaterial: {fileID: 2100000, guid: dcb2560810af84b4eab3baab1adec454, type: 2}
@@ -117,6 +119,19 @@ MonoBehaviour:
   chaseRange: 20
   searchTime: 5
   attackRange: 2
+--- !u!114 &28284322193101101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422385176623986114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74fedb82a77d044e9432118e87fca00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 100
 --- !u!195 &422385176623986113
 NavMeshAgent:
   m_ObjectHideFlags: 0
