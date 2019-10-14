@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Camera fpCamera;
     [SerializeField] private float range = 50f;
     [SerializeField] private int gunDamage = 20;
+    [SerializeField] private ParticleSystem muzzleFlash;
     
     private bool _isFiring;
 
@@ -29,9 +30,20 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
+        PlayShootFx();
+        ProcessRaycast();
+    }
+
+    private void PlayShootFx()
+    {
+        muzzleFlash.Play();
+    }
+
+    private void ProcessRaycast()
+    {
         var fpCameraTransform = fpCamera.transform;
         if (!Physics.Raycast(fpCameraTransform.position, fpCameraTransform.forward, out var hit, range)) return;
-        
+
         var damageable = hit.transform.GetComponent<IDamageable>();
         if (damageable != null)
         {
