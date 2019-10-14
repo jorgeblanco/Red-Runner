@@ -317,6 +317,7 @@ MonoBehaviour:
   range: 40
   gunDamage: 20
   muzzleFlash: {fileID: 3482198357563737562}
+  hitFxPrefab: {fileID: 0}
 --- !u!1001 &178776521965900934
 PrefabInstance:
   m_ObjectHideFlags: 0

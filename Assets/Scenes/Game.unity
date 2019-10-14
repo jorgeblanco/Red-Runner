@@ -1505,6 +1505,12 @@ PrefabInstance:
       propertyPath: gunDamage
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7917880474686530401, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+        type: 3}
+      propertyPath: hitFxPrefab
+      value: 
+      objectReference: {fileID: 8256546445988510781, guid: f6f2b8e85e6184d439deca057590afbf,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
 --- !u!1001 &259613631

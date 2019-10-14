@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class Weapon : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float range = 50f;
     [SerializeField] private int gunDamage = 20;
     [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] private GameObject hitFxPrefab;
     
     private bool _isFiring;
 
@@ -44,6 +46,7 @@ public class Weapon : MonoBehaviour
         var fpCameraTransform = fpCamera.transform;
         if (!Physics.Raycast(fpCameraTransform.position, fpCameraTransform.forward, out var hit, range)) return;
 
+        PlayHitFx(hit);
         var damageable = hit.transform.GetComponent<IDamageable>();
         if (damageable != null)
         {
@@ -54,5 +57,11 @@ public class Weapon : MonoBehaviour
         {
             Debug.Log(hit.collider.gameObject.name + " was hit");
         }
+    }
+
+    private void PlayHitFx(RaycastHit hit)
+    {
+        var hitFx = Instantiate(hitFxPrefab, hit.point, Quaternion.identity, transform);
+        hitFx.transform.forward = hit.normal;
     }
 }
