@@ -11,7 +11,7 @@ public class GameState : MonoBehaviour
 
     private void Start()
     {
-        UpdateScore();
+        // UpdateScore();
     }
 
     private void Update()
@@ -24,7 +24,7 @@ public class GameState : MonoBehaviour
     {
         if (_shouldReload)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Reload();
         }
     }
 
@@ -45,5 +45,21 @@ public class GameState : MonoBehaviour
     private void UpdateScore()
     {
         score.SetText($"(Score] [{_score})");
+    }
+
+    public void Reload()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_WEBPLAYER
+         Application.OpenURL(webplayerQuitURL);
+#else
+         Application.Quit();
+#endif
     }
 }
