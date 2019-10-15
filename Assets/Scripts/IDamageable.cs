@@ -1,5 +1,5 @@
 ﻿interface IDamageable
 {
     int HitPoints { get; }
-    void Damage(int damage);
+    void TakeDamage(int damage);
 }

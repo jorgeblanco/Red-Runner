@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
+public class PlayerHealth : MonoBehaviour, IDamageable, IKillable
 {
-    [SerializeField] private int baseHitPoints = 100;
     public int HitPoints { get; private set; }
+
+    [SerializeField] private int baseHitPoints = 100;
 
     private void Start()
     {
@@ -12,6 +14,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
 
     public void TakeDamage(int damage)
     {
+        // TODO add damage VFX+SFX
         HitPoints -= damage;
         if (HitPoints <= 0)
         {
@@ -21,8 +24,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
 
     public void Kill()
     {
-        Debug.Log(gameObject.name + " was killed");
-        Destroy(gameObject);
+        Debug.Log("You died");
     }
 }
-

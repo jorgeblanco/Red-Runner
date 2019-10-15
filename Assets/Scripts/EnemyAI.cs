@@ -17,11 +17,19 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float chaseRange = 5f;
     [SerializeField] private float searchTime = 5f;
     [SerializeField] private float attackRange = 1f;
+    [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private int baseDamage = 5;
     
     private NavMeshAgent _navMeshAgent;
     private float _distanceToTarget = Mathf.Infinity;
     private EnemyState _state;
     private float _lostTime;
+    private Animator _animator;
+    private IDamageable _targetDamageable;
+    
+    private static readonly int Idle = Animator.StringToHash("idle");
+    private static readonly int Move = Animator.StringToHash("move");
+    private static readonly int Attack = Animator.StringToHash("attack");
 
     enum EnemyState
     {
@@ -34,11 +42,14 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _animator = GetComponent<Animator>();
+        _targetDamageable = target.GetComponent<IDamageable>();
     }
 
     private void Update()
     {
         UpdateState();
+        UpdateAnimState();
         switch (_state)
         {
             case EnemyState.Idle:
@@ -50,7 +61,7 @@ public class EnemyAI : MonoBehaviour
                 indicator.material = provokedMaterial;
                 break;
             case EnemyState.Attacking:
-                AttackTarget();
+                FaceTarget();
                 indicator.material = attackingMaterial;
                 break;
             case EnemyState.Searching:
@@ -81,9 +92,37 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private void UpdateAnimState()
+    {
+        if(_state == EnemyState.Provoked || _state == EnemyState.Searching)
+        {
+           _animator.SetTrigger(Move); 
+        }
+        else if (_state == EnemyState.Attacking)
+        {
+           _animator.SetTrigger(Attack); 
+        }
+        else if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+        {
+            _animator.SetTrigger(Idle);
+        }
+    }
+
+    private void FaceTarget()
+    {
+        var direction = (target.position - transform.position).normalized;
+        var lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation, 
+            lookRotation, 
+            Time.deltaTime * rotationSpeed  // Reduce the rotation speed for more natural turning
+            );
+    }
+    
     private void AttackTarget()
     {
         Debug.Log("Attacking");
+        _targetDamageable?.TakeDamage(baseDamage);
     }
 
     private void OnDrawGizmosSelected()

@@ -50,7 +50,7 @@ public class Weapon : MonoBehaviour
         var damageable = hit.transform.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.Damage(gunDamage);
+            damageable.TakeDamage(gunDamage);
             Debug.Log(hit.collider.gameObject.name + " was damaged");
         }
         else

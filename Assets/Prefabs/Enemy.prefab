@@ -120,6 +120,8 @@ MonoBehaviour:
   chaseRange: 20
   searchTime: 5
   attackRange: 2
+  rotationSpeed: 5
+  baseDamage: 5
 --- !u!114 &28284322193101101
 MonoBehaviour:
   m_ObjectHideFlags: 0
