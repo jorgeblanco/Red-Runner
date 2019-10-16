@@ -5042,6 +5042,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHitPoints: 100
+--- !u!114 &1215047754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215047748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30c6c3a71db3d694bab225dfa2d5c34a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverCanvas: {fileID: 1407344517}
 --- !u!1001 &1220690006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5596,6 +5609,12 @@ Transform:
 --- !u!224 &1407344514 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9126818687198099981, guid: 028a1f3a0aea3b647b98c156dcda72ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 9126818685794952591}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1407344517 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 9126818687198099978, guid: 028a1f3a0aea3b647b98c156dcda72ec,
     type: 3}
   m_PrefabInstance: {fileID: 9126818685794952591}
   m_PrefabAsset: {fileID: 0}

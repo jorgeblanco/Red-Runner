@@ -17,6 +17,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
         {
             Kill();
         }
+        BroadcastMessage("OnDamageTaken");
     }
 
     public void Kill()

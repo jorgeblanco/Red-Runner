@@ -30,6 +30,7 @@ public class EnemyAI : MonoBehaviour
     private static readonly int Idle = Animator.StringToHash("idle");
     private static readonly int Move = Animator.StringToHash("move");
     private static readonly int Attack = Animator.StringToHash("attack");
+    private bool _lastSeen;
 
     enum EnemyState
     {
@@ -50,18 +51,46 @@ public class EnemyAI : MonoBehaviour
     {
         UpdateState();
         UpdateAnimState();
+        UpdateAction();
+        UpdateMaterial();
+    }
+
+    private void UpdateAction()
+    {
         switch (_state)
         {
             case EnemyState.Idle:
                 _navMeshAgent.SetDestination(basePos.position);
-                indicator.material = idleMaterial;
+                _lastSeen = false;
                 break;
             case EnemyState.Provoked:
                 _navMeshAgent.SetDestination(target.position);
-                indicator.material = provokedMaterial;
+                _lastSeen = false;
                 break;
             case EnemyState.Attacking:
                 FaceTarget();
+                break;
+            case EnemyState.Searching:
+                if (!_lastSeen)
+                {
+                    _navMeshAgent.SetDestination(target.position);
+                    _lastSeen = true;
+                }
+                break;
+        }
+    }
+
+    private void UpdateMaterial()
+    {
+        switch (_state)
+        {
+            case EnemyState.Idle:
+                indicator.material = idleMaterial;
+                break;
+            case EnemyState.Provoked:
+                indicator.material = provokedMaterial;
+                break;
+            case EnemyState.Attacking:
                 indicator.material = attackingMaterial;
                 break;
             case EnemyState.Searching:
@@ -123,6 +152,11 @@ public class EnemyAI : MonoBehaviour
     {
         Debug.Log("Attacking");
         _targetDamageable?.TakeDamage(baseDamage);
+    }
+
+    public void OnDamageTaken()
+    {
+        _state = EnemyState.Provoked;
     }
 
     private void OnDrawGizmosSelected()
