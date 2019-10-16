@@ -7,9 +7,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IKillable
 
     [SerializeField] private int baseHitPoints = 100;
 
+    private DeathHandler _deathHandler;
+
     private void Start()
     {
         HitPoints = baseHitPoints;
+        _deathHandler = GetComponent<DeathHandler>();
     }
 
     public void TakeDamage(int damage)
@@ -25,5 +28,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IKillable
     public void Kill()
     {
         Debug.Log("You died");
+        _deathHandler.HandleDeath();
     }
 }
