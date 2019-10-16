@@ -48,15 +48,7 @@ public class Weapon : MonoBehaviour
 
         PlayHitFx(hit);
         var damageable = hit.transform.GetComponent<IDamageable>();
-        if (damageable != null)
-        {
-            damageable.TakeDamage(gunDamage);
-            Debug.Log(hit.collider.gameObject.name + " was damaged");
-        }
-        else
-        {
-            Debug.Log(hit.collider.gameObject.name + " was hit");
-        }
+        damageable?.TakeDamage(gunDamage);
     }
 
     private void PlayHitFx(RaycastHit hit)
