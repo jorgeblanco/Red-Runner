@@ -70,6 +70,8 @@ MonoBehaviour:
   basePos: {fileID: 0}
   zoomedPos: {fileID: 0}
   reticle: {fileID: 0}
+  zoomedSensitivity: 1
+  baseSensitivity: 2
 --- !u!1001 &1902158580185956528
 PrefabInstance:
   m_ObjectHideFlags: 0
