@@ -1,16 +1,23 @@
 ﻿using System;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private Camera fpCamera;
     [SerializeField] private float range = 50f;
-    [SerializeField] private int gunDamage = 20;
+    [SerializeField] private int gunDamage = 10;
+    [SerializeField] private int shotsPerSecond = 10;
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private GameObject hitFxPrefab;
     
     private bool _isFiring;
+    private Ammo _ammo;
+    private double _timeToNextShot;
+
+    private void Start()
+    {
+        _ammo = FindObjectOfType<Ammo>();
+    }
 
     private void Update()
     {
@@ -32,8 +39,12 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
+        if(Time.time < _timeToNextShot || _ammo.GetAmmoCount() <= 0) {return;}
+        
         PlayShootFx();
         ProcessRaycast();
+        _ammo.AddAmmo(-1);
+        _timeToNextShot = Time.time + (1f / shotsPerSecond);
     }
 
     private void PlayShootFx()
