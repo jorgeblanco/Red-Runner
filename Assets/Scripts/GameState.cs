@@ -6,8 +6,9 @@ public class GameState : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI score;
     
-    private bool _shouldReload;
     private int _score;
+    private bool _shouldReload;
+    private bool _shouldQuit;
 
     private void Start()
     {
@@ -26,13 +27,21 @@ public class GameState : MonoBehaviour
         {
             Reload();
         }
+        if (_shouldQuit)
+        {
+            Quit();
+        }
     }
 
     private void GetInput()
     {
-        if (Input.GetButton("Fire2") && !_shouldReload)
+        if (Input.GetButton("Reload") && !_shouldReload)
         {
             _shouldReload = true;
+        }
+        if (Input.GetButton("Quit") && !_shouldQuit)
+        {
+            _shouldQuit = true;
         }
     }
 

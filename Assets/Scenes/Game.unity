@@ -423,6 +423,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 21298027}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &27209840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5180256408098834229, guid: 7f6252b3a428ca445b0063186cb45159,
+    type: 3}
+  m_PrefabInstance: {fileID: 7304921270362448226}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &35840245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4025,6 +4037,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4832746115645636753, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+        type: 3}
+      propertyPath: reticle
+      value: 
+      objectReference: {fileID: 27209840}
     - target: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_Name
       value: Player
@@ -30358,6 +30375,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Game Over Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 9126818687198099982, guid: 028a1f3a0aea3b647b98c156dcda72ec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9126818687198099981, guid: 028a1f3a0aea3b647b98c156dcda72ec,
         type: 3}
