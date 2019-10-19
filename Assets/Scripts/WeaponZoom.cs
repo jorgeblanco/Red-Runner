@@ -18,9 +18,15 @@ public class WeaponZoom : MonoBehaviour
     private bool _zoomed;
     private RigidbodyFirstPersonController _fpController;
 
-    private void Start()
+    private void Awake()
     {
         _fpController = FindObjectOfType<RigidbodyFirstPersonController>();
+    }
+
+    private void OnEnable()
+    {
+        _zoomed = false;
+        UpdateZoom();
     }
 
     private void Update()
@@ -28,13 +34,13 @@ public class WeaponZoom : MonoBehaviour
         GetInput();
         if (_toggleZoom)
         {
-            ToggleZoom();
+            _zoomed = !_zoomed;
+            UpdateZoom();
         }
     }
 
-    private void ToggleZoom()
+    private void UpdateZoom()
     {
-        _zoomed = !_zoomed;
         fpCamera.fieldOfView = _zoomed ? zoomedFov : regularFov;
         transform.position = _zoomed ? zoomedPos.position : basePos.position;
         reticle.enabled = !_zoomed;

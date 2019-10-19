@@ -20,7 +20,7 @@ public class WeaponSwitcher : MonoBehaviour
     private void SetActiveWeapon(int index)
     {
         _currentWeapon = index < 0 ? weapons.Length - 1 : index % weapons.Length;
-        for (int i = 0; i < weapons.Length; i++)
+        for (var i = 0; i < weapons.Length; i++)
         {
             weapons[i].gameObject.SetActive(i == _currentWeapon);
         }
