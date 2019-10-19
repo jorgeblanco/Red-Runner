@@ -23,7 +23,7 @@ public class WeaponZoom : MonoBehaviour
         _fpController = FindObjectOfType<RigidbodyFirstPersonController>();
     }
 
-    private void OnEnable()
+    private void OnDisable()
     {
         _zoomed = false;
         UpdateZoom();
