@@ -9,14 +9,21 @@ public class Weapon : MonoBehaviour
     [SerializeField] private int shotsPerSecond = 10;
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private GameObject hitFxPrefab;
+    [SerializeField] private AmmoType ammoType;
     
     private bool _isFiring;
     private Ammo _ammo;
     private double _timeToNextShot;
+    private bool _shouldUpdateCounter;
 
-    private void Start()
+    private void Awake()
     {
         _ammo = FindObjectOfType<Ammo>();
+    }
+
+    private void OnEnable()
+    {
+        _shouldUpdateCounter = true;
     }
 
     private void Update()
@@ -24,6 +31,11 @@ public class Weapon : MonoBehaviour
         if (_isFiring)
         {
             Shoot();
+        }
+
+        if (_shouldUpdateCounter)
+        {
+            _ammo.UpdateAmmoCounter(ammoType);
         }
     }
 
@@ -39,11 +51,11 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
-        if(Time.time < _timeToNextShot || _ammo.GetAmmoCount() <= 0) {return;}
+        if(Time.time < _timeToNextShot || _ammo.GetAmmoCount(ammoType) <= 0) {return;}
         
         PlayShootFx();
         ProcessRaycast();
-        _ammo.AddAmmo(-1);
+        _ammo.AddAmmo(ammoType, -1);
         _timeToNextShot = Time.time + (1f / shotsPerSecond);
     }
 

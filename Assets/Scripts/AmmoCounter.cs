@@ -3,17 +3,15 @@ using UnityEngine;
 
 public class AmmoCounter : MonoBehaviour
 {
-    private Ammo _ammo;
     private TextMeshProUGUI _counter;
 
-    private void Start()
+    private void Awake()
     {
-        _ammo = FindObjectOfType<Ammo>();
         _counter = GetComponent<TextMeshProUGUI>();
     }
 
-    void Update()
+    public void UpdateCounter(AmmoType type, int count)
     {
-        _counter.SetText($"Ammo: {_ammo.GetAmmoCount()}");
+        _counter.SetText($"{type}: {count}");
     }
 }
