@@ -1,4 +1,5 @@
 ﻿using System;
+using AssetPacks.Yurowm.Demo.Scripts;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,16 +8,11 @@ public class EnemyAI : MonoBehaviour
     [Header("Targets")]
     [SerializeField] private Transform target;
     [SerializeField] private Transform basePos;
-    [SerializeField] private MeshRenderer indicator;
-    [Header("Materials")]
-    [SerializeField] private Material idleMaterial;
-    [SerializeField] private Material provokedMaterial;
-    [SerializeField] private Material attackingMaterial;
-    [SerializeField] private Material searchingMaterial;
     [Header("Properties")]
     [SerializeField] private float chaseRange = 5f;
     [SerializeField] private float searchTime = 5f;
     [SerializeField] private float attackRange = 1f;
+    [SerializeField] private float attackDelay = 1f;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private int baseDamage = 5;
     
@@ -24,13 +20,12 @@ public class EnemyAI : MonoBehaviour
     private float _distanceToTarget = Mathf.Infinity;
     private EnemyState _state;
     private float _lostTime;
-    private Animator _animator;
+    private Actions _actions;
     private IDamageable _targetDamageable;
     
-    private static readonly int Idle = Animator.StringToHash("idle");
-    private static readonly int Move = Animator.StringToHash("move");
-    private static readonly int Attack = Animator.StringToHash("attack");
     private bool _lastSeen;
+    private bool _dead;
+    private float? _nextAttack;
 
     enum EnemyState
     {
@@ -43,16 +38,17 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
+        _actions = GetComponentInChildren<Actions>();
         _targetDamageable = target.GetComponent<IDamageable>();
     }
 
     private void Update()
     {
+        if(_dead) {return;}
+        
         UpdateState();
         UpdateAnimState();
         UpdateAction();
-        UpdateMaterial();
     }
 
     private void UpdateAction()
@@ -62,13 +58,16 @@ public class EnemyAI : MonoBehaviour
             case EnemyState.Idle:
                 _navMeshAgent.SetDestination(basePos.position);
                 _lastSeen = false;
+                _nextAttack = null;
                 break;
             case EnemyState.Provoked:
                 _navMeshAgent.SetDestination(target.position);
                 _lastSeen = false;
+                _nextAttack = null;
                 break;
             case EnemyState.Attacking:
                 FaceTarget();
+                TryAttack();
                 break;
             case EnemyState.Searching:
                 if (!_lastSeen)
@@ -77,25 +76,8 @@ public class EnemyAI : MonoBehaviour
                     _lastSeen = true;
                 }
                 break;
-        }
-    }
-
-    private void UpdateMaterial()
-    {
-        switch (_state)
-        {
-            case EnemyState.Idle:
-                indicator.material = idleMaterial;
-                break;
-            case EnemyState.Provoked:
-                indicator.material = provokedMaterial;
-                break;
-            case EnemyState.Attacking:
-                indicator.material = attackingMaterial;
-                break;
-            case EnemyState.Searching:
-                indicator.material = searchingMaterial;
-                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
@@ -125,15 +107,22 @@ public class EnemyAI : MonoBehaviour
     {
         if(_state == EnemyState.Provoked || _state == EnemyState.Searching)
         {
-           _animator.SetTrigger(Move); 
+           _actions.Run();
         }
         else if (_state == EnemyState.Attacking)
         {
-           _animator.SetTrigger(Attack); 
+            if (_nextAttack == null)
+            {
+               _actions.Attack();
+            }
         }
-        else if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+        else if (_navMeshAgent.remainingDistance > _navMeshAgent.stoppingDistance)
         {
-            _animator.SetTrigger(Idle);
+            _actions.Walk();
+        }
+        else
+        {
+            _actions.Stay();
         }
     }
 
@@ -147,6 +136,19 @@ public class EnemyAI : MonoBehaviour
             Time.deltaTime * rotationSpeed  // Reduce the rotation speed for more natural turning
             );
     }
+
+    private void TryAttack()
+    {
+        if (_nextAttack == null)
+        {
+            _nextAttack = Time.time + attackDelay;
+        }
+        else if (_nextAttack <= Time.time)
+        {
+            _nextAttack = null;
+            AttackTarget();
+        }
+    }
     
     private void AttackTarget()
     {
@@ -157,6 +159,15 @@ public class EnemyAI : MonoBehaviour
     public void OnDamageTaken()
     {
         _state = EnemyState.Provoked;
+        _actions.Damage();
+    }
+
+    public void OnDeath()
+    {
+        _dead = true;
+        _actions.Death();
+        GetComponent<Collider>().enabled = false;
+        _navMeshAgent.enabled = false;
     }
 
     private void OnDrawGizmosSelected()

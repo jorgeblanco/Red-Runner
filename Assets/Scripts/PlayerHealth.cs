@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IKillable
         HitPoints = baseHitPoints;
         _deathHandler = GetComponent<DeathHandler>();
         _healthCounter = FindObjectOfType<HealthCounter>();
+        _healthCounter.UpdateCounter(HitPoints);
     }
 
     public void TakeDamage(int damage)

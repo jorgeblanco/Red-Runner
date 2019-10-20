@@ -23,7 +23,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
     public void Kill()
     {
         Debug.Log(gameObject.name + " was killed");
-        Destroy(gameObject);
+        BroadcastMessage("OnDeath");
     }
 }
 
