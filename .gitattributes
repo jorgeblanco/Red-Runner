@@ -61,7 +61,7 @@
 *.ogv                binary
 *.wmv                binary
 # Images
-*.bmp                binary
+*.bmp filter=lfs diff=lfs merge=lfs -text
 *.exr                binary
 *.gif                binary
 *.hdr                binary
