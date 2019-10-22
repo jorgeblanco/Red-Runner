@@ -9,17 +9,20 @@ public class Pickup : MonoBehaviour
 
     private Ammo _ammo;
     private PlayerHealth _playerHealth;
+    private Flashlight _flashlight;
     
     enum PickupType
     {
         Ammo,
-        Health
+        Health,
+        Battery
     }
 
     private void Start()
     {
         _ammo = FindObjectOfType<Ammo>();
         _playerHealth = FindObjectOfType<PlayerHealth>();
+        _flashlight = FindObjectOfType<Flashlight>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,6 +41,9 @@ public class Pickup : MonoBehaviour
                 break;
             case PickupType.Health:
                 _playerHealth.TakeDamage(-count);
+                break;
+            case PickupType.Battery:
+                _flashlight.RechargeFlashlight(count);
                 break;
         }
         Debug.Log($"Picked up {count} {pickupType}");
