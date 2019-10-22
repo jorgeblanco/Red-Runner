@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6f33a20486e8d40a0556bcf043de4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayTime: 30
+  decayTime: 60
   baseIntensity: 4
   minAngle: 40
   maxAngle: 80
