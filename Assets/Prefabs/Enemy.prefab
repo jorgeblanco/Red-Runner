@@ -66,6 +66,7 @@ MonoBehaviour:
   chaseRange: 25
   searchTime: 10
   attackRange: 1
+  attackDelay: 1
   rotationSpeed: 5
   baseDamage: 10
 --- !u!114 &28284322193101101

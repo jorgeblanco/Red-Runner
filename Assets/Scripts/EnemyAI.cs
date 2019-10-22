@@ -37,6 +37,10 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
+        if (target == null)
+        {
+            AcquireTarget();
+        }
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _actions = GetComponentInChildren<Actions>();
         _targetDamageable = target.GetComponent<IDamageable>();
@@ -87,19 +91,46 @@ public class EnemyAI : MonoBehaviour
         if (_distanceToTarget <= attackRange)
         {
             _state = EnemyState.Attacking;
+            return;
         }
-        else if (_distanceToTarget <= chaseRange)
+        if (_distanceToTarget <= chaseRange)
         {
-            _state = EnemyState.Provoked;
+            if(_state == EnemyState.Provoked) return;
+
+            var position = transform.position;
+            // Add one unit to the origin to account for the character height
+            Vector3 origin = new Vector3(position.x, position.y + 1, position.z);
+            Debug.DrawRay(origin, target.position - origin, Color.yellow);
+            
+            if (Physics.Raycast(
+                origin,
+                target.position - origin,
+                out var hit,
+                chaseRange
+                ))
+            {
+                if (hit.collider.GetComponentInChildren<PlayerHealth>() != null)
+                {
+                    _state = EnemyState.Provoked;
+                    return;
+                }
+            }
         }
-        else if(_distanceToTarget > chaseRange && _state == EnemyState.Provoked)
+        if(_distanceToTarget > chaseRange && _state == EnemyState.Provoked)
         {
             _state = EnemyState.Searching;
             _lostTime = Time.time + searchTime;
+            return;
         }
-        else if (_distanceToTarget > chaseRange && Time.time > _lostTime)
+        if (_state == EnemyState.Searching && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
         {
             _state = EnemyState.Idle;
+            return;
+        }
+        if (Time.time > _lostTime)
+        {
+            _state = EnemyState.Idle;
+            return;
         }
     }
 
@@ -123,6 +154,15 @@ public class EnemyAI : MonoBehaviour
         else
         {
             _actions.Stay();
+        }
+    }
+
+    private void AcquireTarget()
+    {
+        target = FindObjectOfType<PlayerHealth>().transform;
+        if (target == null)
+        {
+            throw new ApplicationException("Target not found");
         }
     }
 
