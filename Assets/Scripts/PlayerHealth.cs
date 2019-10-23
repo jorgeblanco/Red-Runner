@@ -8,18 +8,21 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IKillable
 
     private DeathHandler _deathHandler;
     private HealthCounter _healthCounter;
+    private DisplayDamage _displayDamage;
 
     private void Start()
     {
         HitPoints = baseHitPoints;
         _deathHandler = GetComponent<DeathHandler>();
+        _displayDamage = FindObjectOfType<DisplayDamage>();
         _healthCounter = FindObjectOfType<HealthCounter>();
         _healthCounter.UpdateCounter(HitPoints);
     }
 
     public void TakeDamage(int damage)
     {
-        // TODO add damage VFX+SFX
+        // TODO add damage SFX
+        _displayDamage.ShowDamage();
         HitPoints -= damage;
         _healthCounter.UpdateCounter(HitPoints);
         if (HitPoints <= 0)
