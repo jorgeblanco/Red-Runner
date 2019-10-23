@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private GameObject hitFxPrefab;
     [SerializeField] private AmmoType ammoType;
+    [SerializeField] private LayerMask hitMask;
     
     private bool _isFiring;
     private Ammo _ammo;
@@ -67,7 +68,7 @@ public class Weapon : MonoBehaviour
     private void ProcessRaycast()
     {
         var fpCameraTransform = fpCamera.transform;
-        if (!Physics.Raycast(fpCameraTransform.position, fpCameraTransform.forward, out var hit, range)) return;
+        if (!Physics.Raycast(fpCameraTransform.position, fpCameraTransform.forward, out var hit, range, hitMask)) return;
 
         PlayHitFx(hit);
         var damageable = hit.transform.GetComponent<IDamageable>();

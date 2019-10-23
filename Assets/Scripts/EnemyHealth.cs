@@ -3,6 +3,7 @@
 public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
 {
     [SerializeField] private int baseHitPoints = 100;
+    private bool _isDead;
     public int HitPoints { get; private set; }
 
     private void Start()
@@ -12,6 +13,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
 
     public void TakeDamage(int damage)
     {
+        if(_isDead) return;
+        
         HitPoints -= damage;
         if (HitPoints <= 0)
         {
@@ -22,8 +25,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
 
     public void Kill()
     {
+        if(_isDead) return;
+        
         Debug.Log(gameObject.name + " was killed");
         BroadcastMessage("OnDeath");
+        _isDead = true;
     }
 }
 

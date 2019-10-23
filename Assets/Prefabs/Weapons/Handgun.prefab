@@ -53,6 +53,10 @@ MonoBehaviour:
   muzzleFlash: {fileID: 2904179227438748140}
   hitFxPrefab: {fileID: 8256546445988510781, guid: f6f2b8e85e6184d439deca057590afbf,
     type: 3}
+  ammoType: 0
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!114 &6561651845439296679
 MonoBehaviour:
   m_ObjectHideFlags: 0
