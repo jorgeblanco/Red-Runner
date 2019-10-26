@@ -21,8 +21,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IKillable
 
     public void TakeDamage(int damage)
     {
-        // TODO add damage SFX
-        _displayDamage.ShowDamage();
+        if (damage > 0)
+        {
+            // TODO add damage SFX
+            _displayDamage.ShowDamage();
+        }
         HitPoints -= damage;
         _healthCounter.UpdateCounter(HitPoints);
         if (HitPoints <= 0)
@@ -33,7 +36,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IKillable
 
     public void Kill()
     {
-        Debug.Log("You died");
         _deathHandler.HandleDeath();
     }
 }

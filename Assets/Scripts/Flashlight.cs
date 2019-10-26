@@ -10,7 +10,7 @@ public class Flashlight : MonoBehaviour
     [SerializeField] private float maxCharge = 2f;
     
     private Light _spotLight;
-    private float _remainingCharge = 1f;
+    private float _remainingCharge;
     private BatteryCounter _batteryCounter;
     private bool _isOn;
 

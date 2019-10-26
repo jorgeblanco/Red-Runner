@@ -56,7 +56,7 @@ MonoBehaviour:
   ammoType: 1
   hitMask:
     serializedVersion: 2
-    m_Bits: 1537
+    m_Bits: 3585
 --- !u!114 &6561651845439296679
 MonoBehaviour:
   m_ObjectHideFlags: 0

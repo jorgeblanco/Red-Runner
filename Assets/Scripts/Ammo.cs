@@ -19,7 +19,6 @@ public class Ammo : MonoBehaviour
         for(var i = 0; i < ammoSlots.Length; i++)
         {
             ammoSlots[i].ammoType = (AmmoType) i;
-            ammoSlots[i].ammoCount = 50;  // TODO: remove this
         }
     }
 

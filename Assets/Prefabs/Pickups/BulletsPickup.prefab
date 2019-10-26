@@ -82,6 +82,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.41941085
       objectReference: {fileID: 0}
+    - target: {fileID: 2109118071734878317, guid: f0f11069ea908de48a9cdd579601cbc3,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6771939511503439377, guid: f0f11069ea908de48a9cdd579601cbc3,
         type: 3}
       propertyPath: m_Mesh
@@ -806,11 +811,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Tangents.Array.data[95].z
       value: NaN
-      objectReference: {fileID: 0}
-    - target: {fileID: 2109118071734878317, guid: f0f11069ea908de48a9cdd579601cbc3,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0f11069ea908de48a9cdd579601cbc3, type: 3}
@@ -896,6 +896,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.41941085
       objectReference: {fileID: 0}
+    - target: {fileID: 2109118071734878317, guid: f0f11069ea908de48a9cdd579601cbc3,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6771939511503439377, guid: f0f11069ea908de48a9cdd579601cbc3,
         type: 3}
       propertyPath: m_Mesh
@@ -1621,11 +1626,6 @@ PrefabInstance:
       propertyPath: m_Tangents.Array.data[95].z
       value: NaN
       objectReference: {fileID: 0}
-    - target: {fileID: 2109118071734878317, guid: f0f11069ea908de48a9cdd579601cbc3,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0f11069ea908de48a9cdd579601cbc3, type: 3}
 --- !u!1001 &3794926398412782350
@@ -1660,6 +1660,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8735228355839450313, guid: af196670dd4b9814b8322005d401ed5b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8735228356398770296, guid: af196670dd4b9814b8322005d401ed5b,
         type: 3}
       propertyPath: ammoType
@@ -1670,10 +1675,10 @@ PrefabInstance:
       propertyPath: pickupType
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8735228355839450313, guid: af196670dd4b9814b8322005d401ed5b,
+    - target: {fileID: 8735228356398770296, guid: af196670dd4b9814b8322005d401ed5b,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: count
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af196670dd4b9814b8322005d401ed5b, type: 3}

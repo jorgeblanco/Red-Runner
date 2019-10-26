@@ -192,7 +192,6 @@ public class EnemyAI : MonoBehaviour
     
     private void AttackTarget()
     {
-        Debug.Log("Attacking");
         _targetDamageable?.TakeDamage(baseDamage);
     }
 

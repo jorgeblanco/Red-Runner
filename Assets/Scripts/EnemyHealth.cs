@@ -27,7 +27,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
     {
         if(_isDead) return;
         
-        Debug.Log(gameObject.name + " was killed");
         BroadcastMessage("OnDeath");
         _isDead = true;
     }
