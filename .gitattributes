@@ -62,7 +62,7 @@
 *.wmv                binary
 # Images
 *.bmp filter=lfs diff=lfs merge=lfs -text
-*.exr                binary
+*.exr filter=lfs diff=lfs merge=lfs -text
 *.gif                binary
 *.hdr                binary
 *.iff                binary

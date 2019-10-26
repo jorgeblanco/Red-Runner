@@ -56,7 +56,7 @@ MonoBehaviour:
   ammoType: 1
   hitMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1537
 --- !u!114 &6561651845439296679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +211,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4243371153570508, guid: 8b0b86b42def11849a8eba21f4a6a684, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23904141403194016, guid: 8b0b86b42def11849a8eba21f4a6a684,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23722440624247890, guid: 8b0b86b42def11849a8eba21f4a6a684,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23948481808093384, guid: 8b0b86b42def11849a8eba21f4a6a684,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

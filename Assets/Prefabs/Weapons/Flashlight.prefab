@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decayTime: 60
-  baseIntensity: 4
+  baseIntensity: 2
   minAngle: 40
   maxAngle: 80
+  maxCharge: 2
 --- !u!1 &8951901232072308141
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +91,7 @@ Light:
   serializedVersion: 9
   m_Type: 0
   m_Color: {r: 0.99545294, g: 1, b: 0.7028302, a: 1}
-  m_Intensity: 4
+  m_Intensity: 2
   m_Range: 40
   m_SpotAngle: 80
   m_InnerSpotAngle: 8
