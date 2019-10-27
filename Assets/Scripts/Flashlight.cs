@@ -19,6 +19,7 @@ public class Flashlight : MonoBehaviour
         _spotLight = GetComponentInChildren<Light>();
         _batteryCounter = FindObjectOfType<BatteryCounter>();
         _spotLight.enabled = _isOn;
+        _batteryCounter.UpdateCounter(GetFlashlightCharge());
     }
 
     private void Update()
