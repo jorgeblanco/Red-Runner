@@ -46,7 +46,6 @@ public class Pickup : MonoBehaviour
                 _flashlight.RechargeFlashlight(count);
                 break;
         }
-        Debug.Log($"Picked up {count} {pickupType}");
         Destroy(gameObject);
     }
 }

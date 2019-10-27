@@ -43,7 +43,10 @@ public class WeaponZoom : MonoBehaviour
     {
         fpCamera.fieldOfView = _zoomed ? zoomedFov : regularFov;
         transform.position = _zoomed ? zoomedPos.position : basePos.position;
-        reticle.enabled = !_zoomed;
+        if (reticle != null)
+        {
+            reticle.enabled = !_zoomed;
+        }
         _fpController.mouseLook.XSensitivity = _zoomed ? zoomedSensitivity : baseSensitivity;
         _fpController.mouseLook.YSensitivity = _zoomed ? zoomedSensitivity : baseSensitivity;
     }
