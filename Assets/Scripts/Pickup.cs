@@ -6,10 +6,13 @@ public class Pickup : MonoBehaviour
     [SerializeField] private PickupType pickupType;
     [SerializeField] private AmmoType ammoType;
     [SerializeField] private int count = 50;
+    [SerializeField] private AudioClip pickupSfx;
+    [SerializeField] private float sfxVolume = 0.5f;
 
     private Ammo _ammo;
     private PlayerHealth _playerHealth;
     private Flashlight _flashlight;
+    private AudioSource _audioSource;
     
     enum PickupType
     {
@@ -23,6 +26,7 @@ public class Pickup : MonoBehaviour
         _ammo = FindObjectOfType<Ammo>();
         _playerHealth = FindObjectOfType<PlayerHealth>();
         _flashlight = FindObjectOfType<Flashlight>();
+        _audioSource = FindObjectOfType<PlayerHealth>().GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,6 +50,7 @@ public class Pickup : MonoBehaviour
                 _flashlight.RechargeFlashlight(count);
                 break;
         }
+        _audioSource.PlayOneShot(pickupSfx, sfxVolume);
         Destroy(gameObject);
     }
 }

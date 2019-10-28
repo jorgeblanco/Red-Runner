@@ -277,6 +277,21 @@ PrefabInstance:
       propertyPath: pickupType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8735228356398770296, guid: af196670dd4b9814b8322005d401ed5b,
+        type: 3}
+      propertyPath: pickupSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: d0446570ca456c1419cfa3f28d7883a8, type: 3}
+    - target: {fileID: 5724448076276166207, guid: af196670dd4b9814b8322005d401ed5b,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d0446570ca456c1419cfa3f28d7883a8, type: 3}
+    - target: {fileID: 1099171602872395164, guid: af196670dd4b9814b8322005d401ed5b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af196670dd4b9814b8322005d401ed5b, type: 3}
 --- !u!4 &2198190440994189759 stripped
