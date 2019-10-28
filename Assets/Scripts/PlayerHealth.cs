@@ -5,10 +5,15 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IKillable
     public int HitPoints { get; private set; }
 
     [SerializeField] private int baseHitPoints = 100;
+    [SerializeField] private float damageSfxVolume = 0.5f;
+    [SerializeField] private AudioClip[] damageSfx;
+    [SerializeField] private float deathSfxVolume = 0.5f;
+    [SerializeField] private AudioClip[] deathSfx;
 
     private DeathHandler _deathHandler;
     private HealthCounter _healthCounter;
     private DisplayDamage _displayDamage;
+    private AudioSource _audioSource;
 
     private void Start()
     {
@@ -17,13 +22,18 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IKillable
         _displayDamage = FindObjectOfType<DisplayDamage>();
         _healthCounter = FindObjectOfType<HealthCounter>();
         _healthCounter.UpdateCounter(HitPoints);
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(int damage)
     {
         if (damage > 0)
         {
-            // TODO add damage SFX
+            if (damageSfx.Length > 0)
+            {
+                var sfx = damageSfx[Random.Range(0, damageSfx.Length)];
+                _audioSource.PlayOneShot(sfx, damageSfxVolume);
+            }
             _displayDamage.ShowDamage();
         }
         HitPoints -= damage;
@@ -36,6 +46,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IKillable
 
     public void Kill()
     {
+        if (deathSfx.Length > 0)
+        {
+            var sfx = deathSfx[Random.Range(0, deathSfx.Length)];
+            _audioSource.PlayOneShot(sfx, deathSfxVolume);
+        }
         _deathHandler.HandleDeath();
     }
 }

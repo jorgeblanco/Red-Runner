@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4827459773971932345}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7388029689399849133}
@@ -491,7 +491,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -619,6 +619,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHitPoints: 100
+  damageSfxVolume: 0.5
+  damageSfx:
+  - {fileID: 8300000, guid: d2cc015ccf0dc614990975a6f7e550a7, type: 3}
+  - {fileID: 8300000, guid: 9bccd1a63c2a65c4da228147df29005b, type: 3}
+  - {fileID: 8300000, guid: bb3c2295e14a09c49a4903b21fcd0c66, type: 3}
+  - {fileID: 8300000, guid: 6bcd134cd3fcf8440a4f28e76543dc71, type: 3}
+  - {fileID: 8300000, guid: b9739ac1b24b5f94ea2bd47e877bc664, type: 3}
+  - {fileID: 8300000, guid: b8b68b9c5d5adbb4dac6204249157e84, type: 3}
+  - {fileID: 8300000, guid: 359320c7ac665624080f9b6070be31b3, type: 3}
+  - {fileID: 8300000, guid: fc4abba7b8d55314b8258e17a3bea7c9, type: 3}
+  deathSfxVolume: 0.5
+  deathSfx:
+  - {fileID: 8300000, guid: 7df6601aefda67046ab5a3cd3910620e, type: 3}
+  - {fileID: 8300000, guid: 85b05b31227d255469bbce887525ab74, type: 3}
+  - {fileID: 8300000, guid: 9a3e2f269fd7f494cb5ca67b2aa350cb, type: 3}
 --- !u!114 &4827459773745133004
 MonoBehaviour:
   m_ObjectHideFlags: 0

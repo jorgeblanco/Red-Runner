@@ -2,6 +2,7 @@
 using AssetPacks.Yurowm.Demo.Scripts;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float attackDelay = 1f;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private int baseDamage = 5;
+    [SerializeField] private float velocityThreshold;
+    [Header("SFX")]
+    [SerializeField] private float stepSfxDelay = 0.5f;
+    [SerializeField] private AudioClip[] footsteps;
     
     private NavMeshAgent _navMeshAgent;
     private float _distanceToTarget = Mathf.Infinity;
@@ -22,10 +27,11 @@ public class EnemyAI : MonoBehaviour
     private float _lostTime;
     private Actions _actions;
     private IDamageable _targetDamageable;
-    
     private bool _lastSeen;
     private bool _dead;
     private float? _nextAttack;
+    private AudioSource _audioSource;
+    private float _nextStepTime;
 
     enum EnemyState
     {
@@ -44,6 +50,7 @@ public class EnemyAI : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _actions = GetComponentInChildren<Actions>();
         _targetDamageable = target.GetComponent<IDamageable>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -53,6 +60,21 @@ public class EnemyAI : MonoBehaviour
         UpdateState();
         UpdateAnimState();
         UpdateAction();
+        UpdateSfx();
+    }
+
+    private void UpdateSfx()
+    {
+        if (Vector3.Distance(_navMeshAgent.velocity, Vector3.zero) > velocityThreshold && Time.time > _nextStepTime)
+        {
+            if (footsteps.Length > 0)
+            {
+                var footstep = footsteps[Random.Range(0, footsteps.Length)];
+                _audioSource.pitch = Random.Range(0.75f, 1.25f);
+                _audioSource.PlayOneShot(footstep);
+                _nextStepTime = Time.time + stepSfxDelay;
+            }
+        }
     }
 
     private void UpdateAction()

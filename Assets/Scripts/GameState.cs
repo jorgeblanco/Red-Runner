@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class GameState : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class GameState : MonoBehaviour
     private int _score;
     private bool _shouldReload;
     private bool _shouldQuit;
+    private FirstPersonController _fpController;
 
     private void Start()
     {
         // UpdateScore();
+        _fpController = FindObjectOfType<FirstPersonController>();
     }
-
+    
     private void Update()
     {
         GetInput();
@@ -61,6 +64,7 @@ public class GameState : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
         FindObjectOfType<WeaponSwitcher>().enabled = true;
+        _fpController.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
