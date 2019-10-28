@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(AudioSource))]
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private Camera fpCamera;
@@ -11,15 +13,18 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject hitFxPrefab;
     [SerializeField] private AmmoType ammoType;
     [SerializeField] private LayerMask hitMask;
+    [SerializeField] private AudioClip[] sfx;
     
     private bool _isFiring;
     private Ammo _ammo;
     private double _timeToNextShot;
     private bool _shouldUpdateCounter;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
         _ammo = FindObjectOfType<Ammo>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -63,6 +68,10 @@ public class Weapon : MonoBehaviour
     private void PlayShootFx()
     {
         muzzleFlash.Play();
+        
+        if(sfx.Length <= 0) return;
+        var audioClip = sfx[Random.Range(0, sfx.Length)];
+        _audioSource.PlayOneShot(audioClip);
     }
 
     private void ProcessRaycast()
