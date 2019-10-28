@@ -66,8 +66,8 @@ MonoBehaviour:
   basePos: {fileID: 0}
   chaseRange: 25
   searchTime: 10
-  attackRange: 1.3
-  attackDelay: 1
+  attackRange: 1.4
+  attackDelay: 0.8
   rotationSpeed: 5
   baseDamage: 10
   velocityThreshold: 0

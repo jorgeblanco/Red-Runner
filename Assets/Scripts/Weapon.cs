@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private AmmoType ammoType;
     [SerializeField] private LayerMask hitMask;
     [SerializeField] private AudioClip[] sfx;
+    [SerializeField] private AudioClip gunClickSfx;
     
     private bool _isFiring;
     private Ammo _ammo;
@@ -57,7 +58,14 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
-        if(Time.time < _timeToNextShot || _ammo.GetAmmoCount(ammoType) <= 0) {return;}
+        if(Time.time < _timeToNextShot) {return;}
+
+        if (_ammo.GetAmmoCount(ammoType) <= 0)
+        {
+            _audioSource.PlayOneShot(gunClickSfx);
+            _timeToNextShot = Time.time + 2f;  // TODO: Remove hardcoded delay
+            return;
+        }
         
         PlayShootFx();
         ProcessRaycast();

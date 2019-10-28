@@ -64,6 +64,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cef27b1706eb936438167577948951a0, type: 3}
   - {fileID: 8300000, guid: 6b4dcf7b9f61d6f4794cc737d8b9fd4a, type: 3}
   - {fileID: 8300000, guid: 9170ac2216f9ed546b6c85d2dcef31d7, type: 3}
+  gunClickSfx: {fileID: 8300000, guid: b98e7537881e3e64dabce3672d3e94b9, type: 3}
 --- !u!114 &6561651845439296679
 MonoBehaviour:
   m_ObjectHideFlags: 0
