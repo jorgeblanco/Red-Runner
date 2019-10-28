@@ -16,11 +16,11 @@ public class WeaponZoom : MonoBehaviour
 
     private bool _toggleZoom;
     private bool _zoomed;
-    private RigidbodyFirstPersonController _fpController;
+    private FirstPersonController _fpController;
 
     private void Awake()
     {
-        _fpController = FindObjectOfType<RigidbodyFirstPersonController>();
+        _fpController = FindObjectOfType<FirstPersonController>();
     }
 
     private void OnDisable()
