@@ -49,8 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fpCamera: {fileID: 0}
   range: 60
-  gunDamage: 15
-  shotsPerSecond: 5
+  gunDamage: 30
+  shotsPerSecond: 2
   muzzleFlash: {fileID: 2904179227438748140}
   hitFxPrefab: {fileID: 8256546445988510781, guid: f6f2b8e85e6184d439deca057590afbf,
     type: 3}
@@ -236,6 +236,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23769447271555568, guid: 6f1a7354265853f44b0ed5e2e43676ad,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 23508060292273042, guid: 6f1a7354265853f44b0ed5e2e43676ad,
         type: 3}
       propertyPath: m_CastShadows
@@ -247,11 +252,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 23749735145796272, guid: 6f1a7354265853f44b0ed5e2e43676ad,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23769447271555568, guid: 6f1a7354265853f44b0ed5e2e43676ad,
         type: 3}
       propertyPath: m_CastShadows
       value: 0

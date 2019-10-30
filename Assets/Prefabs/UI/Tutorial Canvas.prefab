@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4291e8d02c25bb74a90a5070553f215b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeTimeMultiplier: 0.15
+  fadeTimeMultiplier: 0.1
 --- !u!225 &5622400332822918119
 CanvasGroup:
   m_ObjectHideFlags: 0
